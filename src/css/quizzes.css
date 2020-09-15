@@ -1,0 +1,86 @@
+.quizzes {
+  width: 100%;
+}
+.quizzes-list table {
+  width: 101%;
+}
+.quizzes-list thead {
+  width: 100% !important;
+}
+tr th {
+  background-color: orange;
+  font-size: 1.1em;
+  font-family: Fredoka One;
+  letter-spacing: 1px;
+}
+tr th:nth-child(1) {
+  width: 5%;
+}
+tr th:nth-child(2) {
+  width: 45%;
+}
+tr th:nth-child(3) {
+  width: 20%;
+}
+tr th:nth-child(4) {
+  width: 20%;
+  padding: 0 5px;
+}
+tr th:nth-child(5) {
+  width: 5%;
+}
+.quizzes-list tbody tr {
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 40px;
+}
+
+.quizzes-list tbody tr td {
+  text-align: center;
+}
+.quizzes-list tbody tr td:nth-child(5) {
+  text-align: left;
+}
+.showmore {
+  position: relative;
+}
+.show-more {
+  position: absolute;
+  visibility: hidden;
+  flex-direction: column;
+  background-color: #fff;
+  border: thin solid #ccc;
+  min-height: 128px;
+  min-width: 90px;
+  right: 0%;
+  top: 98%;
+  z-index: 1;
+}
+.showmore button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.showmore:hover .show-more {
+  visibility: visible;
+  display: flex;
+}
+.student-quiz-controls {
+  list-style: none;
+}
+.quizzes button {
+  height: 42px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: thin solid #efefee;
+}
+ul.student-quiz-controls li {
+  border: none;
+  font-size: 0.7em;
+  color: rgb(66, 65, 65);
+  border-radius: 0;
+  box-shadow: none;
+}
+.take-quiz button {
+  border-radius: 5px;
+  width: 100%;
+  margin-left: 0;
+}

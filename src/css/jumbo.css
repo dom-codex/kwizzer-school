@@ -1,0 +1,9 @@
+.jumbo-greeting {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: Fredoka One;
+  letter-spacing: 3px;
+}

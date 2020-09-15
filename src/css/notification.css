@@ -1,0 +1,25 @@
+.notification {
+  border-top: thin solid #efefef;
+  font-family: Lato;
+}
+.notification-card {
+  width: 98%;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: thin solid #ccc;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+}
+.notification-card h3,
+.notification-card p {
+  margin: 0;
+}
+.n-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.n-card-body {
+  margin: 12px 0;
+}

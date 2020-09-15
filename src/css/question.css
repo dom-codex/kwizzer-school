@@ -1,0 +1,145 @@
+section.question {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: #fff;
+}
+.header {
+  background-color: #050114;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  padding-left: 10px;
+  font-family: Fredoka One;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.submitExam {
+  position: absolute;
+  right: 18px;
+  z-index: 5;
+  top: 15px;
+  font-family: Fredoka One;
+}
+.header h2,
+.timer-cont h5,
+.timer-cont p,
+.question-selector p,
+.question-area h4 {
+  margin: 0;
+  padding: 0;
+}
+.timer-cont {
+  text-align: center;
+  background-color: turquoise;
+}
+.timer-cont p {
+  font-size: 1.55em;
+}
+.question-selector {
+  display: flex;
+  justify-content: space-between;
+  color: grey;
+  background-color: rgba(233, 233, 233, 0.616);
+}
+.selectors {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.question-selector button {
+  height: 42px;
+  padding: 9px;
+  border: none;
+  background-color: #ccc;
+  font-family: Fredoka One;
+}
+.question-area h4 {
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 1.6em;
+}
+.question-area p {
+  padding-left: 20px;
+  font-size: 1.5em;
+  display: flex;
+}
+.question ul {
+  list-style: none;
+  padding-left: 0;
+}
+.question-options ul li {
+  display: flex;
+  border: thin solid #ccc;
+  width: 90%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.question-options div:nth-child(1) {
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: turquoise;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.question-controls {
+  text-align: center;
+}
+.question-controls button {
+  margin-left: 12px;
+  width: 90px;
+  height: 28px;
+  font-family: Fredoka One;
+}
+.jump {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  height: 50px;
+}
+.jump-cont {
+  margin-left: 10px;
+}
+.jumper {
+  display: flex;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5px;
+  border-radius: 5px;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.jumper-btn {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  width: 100%;
+  height: 85%;
+  overflow-y: scroll;
+  background-color: #050114c5;
+  padding: 5px;
+}
+.jumper button {
+  width: 100%;
+  height: 32px;
+}
+.slideup {
+  z-index: 5;
+  transform: translateY(0%);
+}

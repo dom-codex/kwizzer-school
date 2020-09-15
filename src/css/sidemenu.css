@@ -1,0 +1,31 @@
+.submenu h2 {
+  padding-bottom: 8px;
+}
+hr {
+  border-color: rgba(0, 0, 0, 0.05);
+}
+.side-nav-cont {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.side-nav {
+  background-color: #fff;
+  height: 100%;
+  width: 50%;
+}
+.app-name {
+  width: 100%;
+  text-align: center;
+}
+.img-cont {
+  text-align: center;
+}
+.img-cont img {
+  height: 100px;
+  background-color: gainsboro;
+  border-radius: 50%;
+  overflow: hidden;
+}

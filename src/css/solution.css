@@ -1,0 +1,23 @@
+.solution {
+  width: 100%;
+}
+.control-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+.control-buttons button {
+  margin-left: 12px;
+  height: 25px;
+  width: 55px;
+}
+.quiz-tab {
+  background-color: #efefef;
+  height: 40px;
+}
+.quiz-tab button {
+  height: 100%;
+  border: none;
+  background-color: #ccc;
+  padding: 3px;
+  border-left: thin solid grey;
+}

@@ -1,0 +1,63 @@
+.candidates-results-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  padding-right: 6px;
+  font-family: Fredoka One;
+}
+.result-content ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 12px;
+}
+.result-content ul li {
+  margin-right: 8px;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 0 12px -5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.res-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: left;
+  padding-right: 11px;
+}
+.res-details small:nth-child(2),
+.res-details small:nth-child(4) {
+  text-align: right;
+}
+.res-title {
+  text-align: center;
+}
+.res-title h2,
+.res-score h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.res-score {
+  text-align: center;
+}
+.res-score h2 {
+  font-size: 3.5em;
+}
+.res-owner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.res-owner p {
+  text-transform: capitalize;
+}
+
+.approve-btn {
+  padding: 5px;
+  font-family: Fredoka One;
+}
+@media all and (max-width: 450px) {
+  .result-content ul {
+    grid-template-columns: 1fr;
+  }
+}

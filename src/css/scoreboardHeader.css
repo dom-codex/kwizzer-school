@@ -1,0 +1,26 @@
+.quiz-topic {
+  text-align: center;
+  margin: 5px;
+}
+.score-board-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: thin solid #ccc;
+  margin-bottom: 10px;
+}
+.score-board-details div {
+  width: 50%;
+  text-align: center;
+}
+.release-btn {
+  border-left: thin solid #ccc;
+  padding-left: 20px;
+}
+.release-btn button {
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: teal;
+  color: #fff;
+}

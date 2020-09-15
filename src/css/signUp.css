@@ -1,0 +1,108 @@
+.signup * {
+  padding: 0;
+  margin: 0;
+}
+.signup {
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 25px;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+.signup-header h1 {
+  font-size: 2.3em;
+  text-align: center;
+  color: #050144;
+  font-family: Fredoka One;
+  letter-spacing: 1px;
+}
+.signup-header p {
+  font-size: 0.9em;
+  text-align: center;
+  color: orange;
+  font-family: Fredoka One;
+}
+p.title {
+  font-size: 2rem;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  text-decoration: underline;
+}
+.signup-content {
+  text-align: center;
+}
+section.signup label {
+  display: block;
+  max-width: 405px;
+  margin: auto;
+  margin-bottom: 5px;
+  text-align: left;
+  cursor: pointer;
+  font-family: Fredoka One;
+}
+.signUp-input input {
+  width: 100%;
+  height: 32px;
+  padding-left: 5px;
+  max-width: 400px;
+  margin-bottom: 10px;
+  border: thin solid #050144;
+  border-radius: 5px;
+  font-family: Fredoka One;
+}
+.btn-cont {
+  max-width: 408px;
+  margin: auto;
+  margin-top: 10px;
+}
+.btn-cont button {
+  height: 38px;
+  width: 45%;
+  background-color: #050144;
+  background-image: linear-gradient(90deg, #050144, #050144ab);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.4);
+}
+.btn-cont button:hover,
+.btn-cont button:active {
+  background-color: #050144;
+  background-image: none;
+  border: 2px solid #050144;
+  color: #000;
+}
+.btn-cont button:disabled,
+button.disable:hover {
+  background-color: #ccc !important;
+  background-image: none !important;
+  border: none !important;
+  color: #fff !important;
+}
+/*validation*/
+.inputerr {
+  border: 2px solid red !important;
+  outline: red;
+}
+.input-error-indicator {
+  display: block;
+  width: 80%;
+  margin: auto;
+  color: red;
+  max-width: 405px;
+  margin: auto;
+  margin-bottom: 5px;
+  text-align: left;
+}
+@media all and (max-width: 460px) {
+  .signup {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+}

@@ -1,0 +1,13 @@
+.scoreboard {
+  width: 100%;
+}
+.quiz-name {
+  font-weight: bold;
+}
+@media all and (max-width: 450px) {
+  .scoreboard {
+    width: 100%;
+    background-color: #fafafa;
+    height: calc(100vh - 65px);
+  }
+}

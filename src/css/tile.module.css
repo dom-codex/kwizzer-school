@@ -1,0 +1,51 @@
+.tile-ul {
+  padding-right: 0;
+}
+.tileli {
+  display: block;
+  min-height: 92px;
+  padding: 10px 0;
+  border-bottom: thin solid #cccccc;
+  position: relative;
+}
+.tilename {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+} /*style for exam scores*/
+.ulGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 10px;
+}
+.li {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0 8px 8px 0;
+  height: 82px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 14px;
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  font-family: Fredoka One;
+  letter-spacing: 2px;
+}
+.li div {
+  font-weight: bold;
+}
+@media all and (max-width: 450px) {
+  .ulGrid {
+    grid-template-columns: 1fr;
+  }
+  .li {
+    font-size: 1.55em;
+    background-color: #fff;
+  }
+  .tileli {
+    background-color: #fff;
+  }
+}

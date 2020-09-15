@@ -1,0 +1,131 @@
+.quiz-name-edit input {
+  width: 95%;
+  height: 35px;
+  border: none;
+  color: grey;
+  font-size: 1.3em;
+  font-family: Fredoka One;
+}
+.question-header h2 {
+  margin-bottom: 0;
+  font-family: Lato;
+  letter-spacing: 2px;
+}
+.question-header p {
+  margin-top: 5px;
+  font-family: Fredoka One;
+}
+.quiz-name-edit {
+  display: flex;
+  flex-direction: column;
+}
+.design-1 {
+  background-color: rgb(233, 233, 233);
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  border-left: 5px solid #ccc;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 0 5px;
+  transition: all 0.5s linear;
+}
+.border-orange {
+  border-left-color: orange;
+}
+.name-quiz label,
+label[for="perMark"],
+label[for="total"],
+label[for="nQuest"] {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.quiz-edit-save {
+  width: 75%;
+  margin: auto;
+  height: 38px;
+  border: 2px solid orange;
+  border-radius: 8px;
+  background: none;
+  color: orange;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  outline: none;
+  font-family: Fredoka One;
+}
+.quiz-edit-save:hover {
+  background-color: orange;
+  color: #fff;
+}
+.bar {
+  width: 50px;
+}
+.questions-tile {
+  border: thin solid #ccc;
+  width: 98%;
+  margin: auto;
+  margin-bottom: 5px;
+  position: relative;
+  padding: 5px 0 10px 10px;
+  font-family: Lato;
+}
+.question-edit-btn,
+.question-delete-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+}
+.question-edit-btn {
+  color: orange;
+}
+.question-delete-btn {
+  right: 65px;
+  background: none;
+  border: none;
+  color: tomato;
+}
+.questions-tile ul {
+  list-style: none;
+}
+.quiz-nav li {
+  margin-right: 12px;
+}
+.questions h4 {
+  margin: 5px 0;
+}
+.options-li {
+  padding-left: 0;
+}
+.options-li li {
+  display: flex;
+}
+.create-fab {
+  position: fixed;
+  z-index: 1;
+  bottom: 20px;
+  right: 28px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: orange;
+  box-shadow: 0px 0px 2px 1px #ccc;
+}
+.create-fab a {
+  display: block;
+  font-size: 2.5em;
+  text-decoration: none;
+  color: black;
+}
+.q-span {
+  font-size: 1.5em;
+  margin: 0 2px;
+}
+.q-div {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  padding-right: 3px;
+}

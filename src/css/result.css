@@ -1,0 +1,14 @@
+.result {
+  width: 100%;
+}
+.stud-result {
+  padding-bottom: 12px;
+  border: thin solid #efefef;
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+}
+.stud-result button {
+  width: 120px;
+  height: 30px;
+}

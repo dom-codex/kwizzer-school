@@ -1,0 +1,135 @@
+.side-panel-cont {
+  position: fixed;
+  height: 100%;
+  background-color: #050144;
+  top: 0;
+  text-align: center;
+  padding-top: 16px;
+  width: 92px;
+  z-index: 2;
+}
+.side-panel {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+}
+.side-panel-logo {
+  color: #ccc;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.side-panel-logo img {
+  height: 100%;
+  width: 65%;
+  border-radius: 5px;
+}
+.side-panel ul {
+  padding: 0;
+}
+.side-panel ul li {
+  height: 30px;
+  width: 100%;
+  margin: 22px 0;
+  color: #fff;
+  position: relative;
+  padding: 5px 5px;
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+  text-decoration: none;
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+.side-panel ul li a {
+  display: block;
+  text-decoration: none;
+  color: #ccc;
+  height: 30px;
+  width: 93px;
+}
+
+.side-panel ul li:hover,
+.side-panel ul li:active {
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.5));
+}
+.side-link li {
+  position: relative;
+}
+.side-link li div {
+  position: absolute;
+  top: 0px;
+  left: 102%;
+  z-index: 3;
+  background-color: orangered;
+  color: #fff;
+  letter-spacing: 1.7px;
+  display: block;
+  width: 120px;
+  padding: 6px;
+  border-radius: 5px;
+  border: 2px solid #050114;
+  visibility: hidden;
+}
+.side-link li:hover div {
+  visibility: visible;
+}
+.layout-body {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.side-panel-slide {
+  transform: translateX(0%) !important;
+}
+/*media queries*/
+@media all and (max-width: 450px) {
+  .side-panel-cont {
+    width: 100%;
+    background-color: transparent;
+    transform: translateX(-100%);
+    transition: all 0.3s linear;
+    z-index: 2;
+  }
+  .side-panel {
+    width: 50%;
+    background-color: #050144;
+    position: relative;
+    top: 44px;
+  }
+  .side-panel-logo {
+    width: 100px;
+    margin: auto;
+  }
+  .side-link li div {
+    visibility: visible;
+    left: 35%;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+  }
+  .layout-body {
+    justify-content: flex-start;
+  }
+}
+@media all and (max-width: 350px) {
+  .heading {
+    margin-left: 10px;
+    margin-bottom: 6px;
+  }
+  .side-panel {
+    width: 75%;
+  }
+}
+@media all and (max-width: 400px) {
+  .side-panel ul li {
+    text-align: left;
+    padding-left: 7px;
+  }
+  .side-link li div {
+    left: 30px;
+    top: 0px;
+    overflow: hidden;
+    width: calc(100% - 30px);
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,39 @@
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px !important;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 30px;
+  margin-right: 15px;
+}
+
+/* After slide changes */
+.toggle:after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 22px;
+  background-color: #fff;
+  top: 2.5px;
+  left: 4px;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+/* Checkbox cheked effect */
+.checkbox:checked + .toggle::after {
+  left: 27px;
+  background-color: #fff;
+}
+
+/* Checkbox cheked toggle label bg color */
+.checkbox:checked + .toggle {
+  background-color: rebeccapurple;
+}
+
+/* Checkbox vanished */
+.checkbox {
+  display: none;
+}
