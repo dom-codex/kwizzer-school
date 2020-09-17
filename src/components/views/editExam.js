@@ -1,6 +1,7 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import NewExamForm from "../sub-components/examform";
 import Loader from "../sub-components/indeterminate_indicator";
+import Loading from "../sub-components/Loading";
 import Dialog from "../sub-components/dialog";
 import { fetchData } from "../../utils/storage";
 import { validateExamForm } from "../../validators/exam";
@@ -8,6 +9,7 @@ import { validateExamForm } from "../../validators/exam";
 const school = fetchData("school");
 const NewExam = (props) => {
   let exam = props.location.state.exam;
+  const [loading, setLoading] = useState(true);
   const inputReducer = (state, action) => {
     switch (action.type) {
       case "new":
@@ -176,6 +178,7 @@ const NewExam = (props) => {
         dispatch({ type: "prefill", exam: exams, quiz: quiz });
         dispatch({ type: "quizzes", quizzes: data.published });
         dispatch({ type: "isloading" });
+        setLoading(false);
       });
   };
   const save = () => {
@@ -219,36 +222,42 @@ const NewExam = (props) => {
   }, []);
   return (
     <section className="exam-form-cont">
-      {data.loading ? (
-        <Loader
-          style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 1 }}
-        />
+      {loading ? (
+        <Loading />
       ) : (
-        ""
+        <div>
+          {data.loading ? (
+            <Loader
+              style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 1 }}
+            />
+          ) : (
+            ""
+          )}
+          {data.showDialog && (
+            <Dialog
+              title={"Notice"}
+              text={"Your changes were saved successfully!!!"}
+              action={() => props.history.replace("/dashboard/exam/records")}
+            />
+          )}
+          <NewExamForm
+            title={"Edit Examination"}
+            inputHandler={inputHandler}
+            save={save}
+            isedit={true}
+            dispatch={dispatch}
+            checkboxHandler={checkboxHandler}
+            data={{
+              isOpen: data.isOpen,
+              isLoading: data.isLoading,
+              quizzes: data.quizzes,
+              setList: () => dispatch({ type: "isopen" }),
+              data: data,
+            }}
+            isValidated={validateExamForm(data)}
+          />
+        </div>
       )}
-      {data.showDialog && (
-        <Dialog
-          title={"Notice"}
-          text={"Your changes were saved successfully!!!"}
-          action={() => props.history.replace("/dashboard/exam/records")}
-        />
-      )}
-      <NewExamForm
-        title={"Edit Examination"}
-        inputHandler={inputHandler}
-        save={save}
-        isedit={true}
-        dispatch={dispatch}
-        checkboxHandler={checkboxHandler}
-        data={{
-          isOpen: data.isOpen,
-          isLoading: data.isLoading,
-          quizzes: data.quizzes,
-          setList: () => dispatch({ type: "isopen" }),
-          data: data,
-        }}
-        isValidated={validateExamForm(data)}
-      />
     </section>
   );
 };

@@ -4,10 +4,12 @@ import QuizTile from "../sub-components/quiz-tile";
 import Toast from "../sub-components/toast";
 import Dialog from "../sub-components/dialog";
 import Loader from "../sub-components/indeterminate_indicator";
+import Loading from "../sub-components/Loading";
 import "../../css/quizzes.css";
 import { fetchData } from "../../utils/storage";
 const school = fetchData("school");
 const QuizList = (props) => {
+  const [loading, setLoading] = useState(true);
   const [quizzes, setQuizzes] = useState([]);
   const [isToast, setToast] = useState(false);
   const [toastTEXT, setTEXT] = useState("");
@@ -24,6 +26,7 @@ const QuizList = (props) => {
       .then((res) => {
         const quizzes = res.quizzes;
         setQuizzes(quizzes);
+        setLoading(false);
       });
   };
   const { switchMode, setHeading } = useContext(modeContext);
@@ -90,77 +93,83 @@ const QuizList = (props) => {
   };
   return (
     <section className="quizzes">
-      {loader ? (
-        <Loader
-          style={{ backgroundColor: "rgba(255,255,255,.8)", zIndex: 2 }}
-        />
+      {loading ? (
+        <Loading />
       ) : (
-        ""
-      )}
-      {showDialog && (
-        <Dialog
-          title={dialogTitle}
-          text={dialogTxt}
-          showCancel={dialogTitle === "Opps!!!" ? false : true}
-          auxAction={() => setDialog(false)}
-          action={
-            dialogTitle === "Opps!!!"
-              ? () => {
-                  setTitle("Are you sure?");
-                  setTxt("you want to delete this quiz");
-                  setDialog(false);
-                }
-              : () => deleteQuiz(quizRef)
-          }
-        />
-      )}
-      {isToast && (
-        <Toast
-          isOpen={isToast}
-          text={toastTEXT}
-          action={setToast}
-          animate={"showToast"}
-          main={"toast"}
-          top={{ bottom: "25px" }}
-        />
-      )}
-      <div className="quizzes-list">
-        <table cellSpacing="0" cellPadding="0">
-          <thead>
-            <tr>
-              <th scope="col">s/n</th>
-              <th scope="col">name</th>
-              <th scope="col">questions</th>
-              <th scope="col">published</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          {!quizzes.length ? (
-            <h1>NO quiz</h1>
+        <div>
+          {loader ? (
+            <Loader
+              style={{ backgroundColor: "rgba(255,255,255,.8)", zIndex: 2 }}
+            />
           ) : (
-            <tbody>
-              {quizzes.map((quiz, i) => {
-                return (
-                  <QuizTile
-                    key={quiz.ref}
-                    sn={i + 1}
-                    school={school}
-                    history={props.history}
-                    quiz={quiz}
-                    user={user}
-                    showOverview={props.showOverView}
-                    publish={() => publish(quiz.ref)}
-                    delete={() => {
-                      setQuizRef(quiz.ref);
-                      setDialog(true);
-                    }}
-                  />
-                );
-              })}
-            </tbody>
+            ""
           )}
-        </table>
-      </div>
+          {showDialog && (
+            <Dialog
+              title={dialogTitle}
+              text={dialogTxt}
+              showCancel={dialogTitle === "Opps!!!" ? false : true}
+              auxAction={() => setDialog(false)}
+              action={
+                dialogTitle === "Opps!!!"
+                  ? () => {
+                      setTitle("Are you sure?");
+                      setTxt("you want to delete this quiz");
+                      setDialog(false);
+                    }
+                  : () => deleteQuiz(quizRef)
+              }
+            />
+          )}
+          {isToast && (
+            <Toast
+              isOpen={isToast}
+              text={toastTEXT}
+              action={setToast}
+              animate={"showToast"}
+              main={"toast"}
+              top={{ bottom: "25px" }}
+            />
+          )}
+          <div className="quizzes-list">
+            <table cellSpacing="0" cellPadding="0">
+              <thead>
+                <tr>
+                  <th scope="col">s/n</th>
+                  <th scope="col">name</th>
+                  <th scope="col">questions</th>
+                  <th scope="col">published</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              {!quizzes.length ? (
+                <h1>NO quiz</h1>
+              ) : (
+                <tbody>
+                  {quizzes.map((quiz, i) => {
+                    return (
+                      <QuizTile
+                        key={quiz.ref}
+                        sn={i + 1}
+                        school={school}
+                        history={props.history}
+                        quiz={quiz}
+                        user={user}
+                        showOverview={props.showOverView}
+                        publish={() => publish(quiz.ref)}
+                        delete={() => {
+                          setQuizRef(quiz.ref);
+                          setDialog(true);
+                        }}
+                      />
+                    );
+                  })}
+                </tbody>
+              )}
+            </table>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

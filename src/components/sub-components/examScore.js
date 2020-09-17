@@ -1,9 +1,14 @@
 import React from "react";
 import Tile from "../sub-components/tiles";
 import Styles from "../../css/tile.module.css";
+let prevColorIndex = -1;
 const colors = ["orange", "orangered", "tomato", "torquoise"];
 const genRandomColors = () => {
   const n = Math.floor(Math.random() * (colors.length - 1));
+  if (n === prevColorIndex) {
+    return this.getRandomColors();
+  }
+  prevColorIndex = n;
   return colors[n];
 };
 const ExamScore = (props) => {

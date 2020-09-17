@@ -4,6 +4,7 @@ import Tile from "../sub-components/tiles";
 import Toast from "../sub-components/toast";
 import Dialog from "../sub-components/dialog";
 import Loader from "../sub-components/indeterminate_indicator";
+import Loading from "../sub-components/Loading";
 import Styles from "../../css/tile.module.css";
 import styles from "../../css/examrecords.css";
 import { fetchData } from "../../utils/storage";
@@ -18,6 +19,7 @@ const ExamRecords = (props) => {
   const [toastText, setToastText] = useState("");
   const [dialogTxt, setDialogTxt] = useState("you want to delete this exam");
   const [dialogTitle, setDialogTitle] = useState("Are your sure?");
+  const [loading, setLoading] = useState(true);
   const hideMore = () => {
     const more = document.querySelectorAll(".records-more");
     for (let i = 0; i < more.length; i++) {
@@ -38,8 +40,8 @@ const ExamRecords = (props) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setExams(data.exams);
+        setLoading(false);
       });
   };
   const LinkTo = (eid) => {
@@ -125,112 +127,120 @@ const ExamRecords = (props) => {
   }, []);
   return (
     <section className="exam-records">
-      {loader ? (
-        <Loader
-          style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 2 }}
-        />
+      {loading ? (
+        <Loading />
       ) : (
-        ""
-      )}
-      {showDialog && (
-        <Dialog
-          title={dialogTitle}
-          text={dialogTxt}
-          showCancel={dialogTitle === "Opps!!!" ? false : true}
-          auxAction={() => setDialog(false)}
-          action={
-            dialogTitle === "Opps!!!"
-              ? () => {
-                  setDialogTitle("Are you sure?");
-                  setDialogTxt("you want to delete this exam?");
-                  setDialog(false);
-                }
-              : deleteExam
-          }
-        />
-      )}
-      <Toast
-        isOpen={showToast}
-        action={setToast}
-        text={toastText}
-        styles={{}}
-        animate={"showToast"}
-        main={"toast"}
-        top={{ bottom: "28px" }}
-      />
-      <hr />
-      <div>
-        <ul className="exams-list-ul">
-          {exams.length ? (
-            exams.map((exam) => {
-              return (
-                <Tile
-                  key={exam.ref}
-                  title={exam.name}
-                  styles={styles}
-                  Styles={Styles}
-                  action={{}}
-                >
-                  <div className="control-btns">
-                    <div className="more-btn" onClick={showMore}>
-                      <i className="material-icons">more_horiz</i>
-                    </div>
-                    <div className="records-more">
-                      <button onClick={() => LinkTo(exam.ref)}>edit</button>
-                      <button onClick={() => authorize(exam.ref)}>
-                        {exam.canStart ? "revoke" : "authorize"}
-                      </button>
-                      <button onClick={() => setRegStatus(exam.ref)}>
-                        {exam.canReg ? "deactivate" : "activate"}
-                      </button>
-                      <div className="reg-link">
-                        <button onClick={(e) => CopyLink(e)}>copy link</button>
-
-                        <input
-                          onChange={() => {}}
-                          className="link"
-                          value={`${window.location.origin}/exam/register/${school}/${exam.ref}`}
-                        />
-                      </div>
-                      <button
-                        onClick={() => {
-                          setExamId(exam.ref);
-                          setDialog(true);
-                        }}
-                      >
-                        delete
-                      </button>
-                    </div>
-                  </div>
-                  <div className="exam-info">
-                    <div>
-                      time
-                      <i className="material-icons">access_time</i>
-                      <div>
-                        {exam.hours > 0 ? `${exam.hours}h  ` : ""}
-                        {exam.minutes > 0 ? ` ${exam.minutes}m` : ""}
-                        {exam.seconds > 0 ? ` ${exam.seconds}` : ""}
-                      </div>
-                    </div>
-                    <div>
-                      Quiz
-                      <i className="material-icons">list</i>
-                      <div>{exam.nQuiz}</div>
-                    </div>
-                    <div>
-                      marks
-                      <i className="material-icons">assignment_turned_in</i>
-                      <div>{exam.TotalMarks}</div>
-                    </div>
-                  </div>
-                </Tile>
-              );
-            })
+        <div>
+          {loader ? (
+            <Loader
+              style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 2 }}
+            />
           ) : (
-            <h1>you haven't created any exam</h1>
+            ""
           )}
-        </ul>
-      </div>
+          {showDialog && (
+            <Dialog
+              title={dialogTitle}
+              text={dialogTxt}
+              showCancel={dialogTitle === "Opps!!!" ? false : true}
+              auxAction={() => setDialog(false)}
+              action={
+                dialogTitle === "Opps!!!"
+                  ? () => {
+                      setDialogTitle("Are you sure?");
+                      setDialogTxt("you want to delete this exam?");
+                      setDialog(false);
+                    }
+                  : deleteExam
+              }
+            />
+          )}
+          <Toast
+            isOpen={showToast}
+            action={setToast}
+            text={toastText}
+            styles={{}}
+            animate={"showToast"}
+            main={"toast"}
+            top={{ bottom: "28px" }}
+          />
+          <hr />
+          <div>
+            <ul className="exams-list-ul">
+              {exams.length ? (
+                exams.map((exam) => {
+                  return (
+                    <Tile
+                      key={exam.ref}
+                      title={exam.name}
+                      styles={styles}
+                      Styles={Styles}
+                      action={{}}
+                    >
+                      <div className="control-btns">
+                        <div className="more-btn" onClick={showMore}>
+                          <i className="material-icons">more_horiz</i>
+                        </div>
+                        <div className="records-more">
+                          <button onClick={() => LinkTo(exam.ref)}>edit</button>
+                          <button onClick={() => authorize(exam.ref)}>
+                            {exam.canStart ? "revoke" : "authorize"}
+                          </button>
+                          <button onClick={() => setRegStatus(exam.ref)}>
+                            {exam.canReg ? "deactivate" : "activate"}
+                          </button>
+                          <div className="reg-link">
+                            <button onClick={(e) => CopyLink(e)}>
+                              copy link
+                            </button>
+
+                            <input
+                              onChange={() => {}}
+                              className="link"
+                              value={`${window.location.origin}/exam/register/${school}/${exam.ref}`}
+                            />
+                          </div>
+                          <button
+                            onClick={() => {
+                              setExamId(exam.ref);
+                              setDialog(true);
+                            }}
+                          >
+                            delete
+                          </button>
+                        </div>
+                      </div>
+                      <div className="exam-info">
+                        <div>
+                          time
+                          <i className="material-icons">access_time</i>
+                          <div>
+                            {exam.hours > 0 ? `${exam.hours}h  ` : ""}
+                            {exam.minutes > 0 ? ` ${exam.minutes}m` : ""}
+                            {exam.seconds > 0 ? ` ${exam.seconds}` : ""}
+                          </div>
+                        </div>
+                        <div>
+                          Quiz
+                          <i className="material-icons">list</i>
+                          <div>{exam.nQuiz}</div>
+                        </div>
+                        <div>
+                          marks
+                          <i className="material-icons">assignment_turned_in</i>
+                          <div>{exam.TotalMarks}</div>
+                        </div>
+                      </div>
+                    </Tile>
+                  );
+                })
+              ) : (
+                <h1>you haven't created any exam</h1>
+              )}
+            </ul>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

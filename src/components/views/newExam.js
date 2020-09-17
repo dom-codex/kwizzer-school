@@ -1,16 +1,16 @@
 // eslint-disable-next-line
-//react-hooks/exhaustive-deps
-import React, { useReducer, useEffect, useContext } from "react";
+import React, { useReducer, useEffect, useContext, useState } from "react";
 import NewExamForm from "../sub-components/examform";
 import { modeContext } from "../../context/mode";
 import Toast from "../sub-components/toast";
 import Loader from "../sub-components/indeterminate_indicator";
+import Loading from "../sub-components/Loading";
 import { validateExamForm } from "../../validators/exam";
 import { fetchData } from "../../utils/storage";
 const school = fetchData("school");
 const NewExam = (props) => {
-  //  let sref = props.location.state.sref;
   const { switchMode, setHeading } = useContext(modeContext);
+  const [loading, setLoading] = useState(true);
   const inputReducer = (state, action) => {
     switch (action.type) {
       case "new":
@@ -168,7 +168,7 @@ const NewExam = (props) => {
           type: "quizzes",
           quizzes: data.published,
         });
-        console.log("published", data);
+        setLoading(false);
       });
   };
   const save = () => {
@@ -217,37 +217,43 @@ const NewExam = (props) => {
   }, []);
   return (
     <section className="exam-form-cont">
-      {data.loading ? (
-        <Loader
-          style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 1 }}
-        />
+      {loading ? (
+        <Loading />
       ) : (
-        ""
+        <div>
+          {data.loading ? (
+            <Loader
+              style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 1 }}
+            />
+          ) : (
+            ""
+          )}
+          <Toast
+            isOpen={data.showToast}
+            action={() => dispatch({ type: "toast" })}
+            text={data.message}
+            styles={{}}
+            animate={"showToast-top"}
+            main={"toast-top"}
+            top={{ top: "25px", left: "30px" }}
+          />
+          <NewExamForm
+            inputHandler={inputHandler}
+            save={save}
+            toggle={toggle}
+            dispatch={dispatch}
+            checkboxHandler={checkboxHandler}
+            data={{
+              isOpen: data.isOpen,
+              isLoading: data.isLoading,
+              quizzes: data.quizzes,
+              setList: () => dispatch({ type: "isopen" }),
+              data: data,
+            }}
+            isValidated={validateExamForm(data)}
+          />
+        </div>
       )}
-      <Toast
-        isOpen={data.showToast}
-        action={() => dispatch({ type: "toast" })}
-        text={data.message}
-        styles={{}}
-        animate={"showToast-top"}
-        main={"toast-top"}
-        top={{ top: "25px", left: "30px" }}
-      />
-      <NewExamForm
-        inputHandler={inputHandler}
-        save={save}
-        toggle={toggle}
-        dispatch={dispatch}
-        checkboxHandler={checkboxHandler}
-        data={{
-          isOpen: data.isOpen,
-          isLoading: data.isLoading,
-          quizzes: data.quizzes,
-          setList: () => dispatch({ type: "isopen" }),
-          data: data,
-        }}
-        isValidated={validateExamForm(data)}
-      />
     </section>
   );
 };
