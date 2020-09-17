@@ -6,7 +6,8 @@ import Dialog from "../sub-components/dialog";
 import "../../css/quiz-editor.css";
 import { inputReducer, save, saveEdited } from "../../utils/editorFunctions";
 import { validateQuestion } from "../../validators/question";
-
+import { fetchData } from "../../utils/storage";
+const school = fetchData("school");
 const removeOrangeBorder = () => {
   const designs = document.querySelectorAll(".design-2");
   for (let i = 0; i < designs.length; i++) {
@@ -17,32 +18,24 @@ const addOrangeBorder = (e) => {
   removeOrangeBorder();
   e.target.parentNode.classList.add("orangeBorder");
 };
-const addOrangeBorderOption = (e) => {
-  removeOrangeBorder();
-  e.target.parentNode.parentNode.classList.add("orangeBorder");
-};
 const generateOptions = (inputState, option, dispatch, setoption) => {
   const options = [];
   for (let i = 0; i < inputState.opts.length; i++) {
     options.push(
-      <li key={i} className="design-2">
+      <li key={i} className={`design-2 option${i + 1}`}>
         <div className="opt">
           <label>{`option ${i + 1}`}</label>
-          {/*<input
-            type="text"
-            onFocus={addOrangeBorderOption}
-            onChange={(e) =>
-              dispatch({
-                type: "opt",
-                value: e.target.value,
-                key: `option${i + 1}`,
-                i: i,
-                id: inputState.opts[i].id ? inputState.opts[i].id : 0,
-              })
-            }
-            value={inputState.opts[i].value}
-          />*/}
           <TextEditor
+            focus={() => {
+              document
+                .querySelector(`.option${i + 1}`)
+                .classList.add("orangeBorder");
+            }}
+            blur={() => {
+              document
+                .querySelector(`.option${i + 1}`)
+                .classList.remove("orangeBorder");
+            }}
             value={inputState.opts[i].value}
             handler={(e) => {
               dispatch({
@@ -99,7 +92,6 @@ const QuizEditor = (props) => {
     isNew === "true"
       ? search.split("quid=")[1].split("&")[0]
       : search.split("qu=")[1].split("&")[0];
-
   const [option, setoptions] = useState(0);
   let [inputState, dispatch] = useReducer(inputReducer, {
     question: "",
@@ -230,19 +222,20 @@ const QuizEditor = (props) => {
             <label htmlFor="question">Question</label>
             <TextEditor
               value={inputState.question}
+              focus={(e) => {
+                document
+                  .querySelector(".question")
+                  .classList.add("orangeBorder");
+              }}
+              blur={() => {
+                document
+                  .querySelector(".question")
+                  .classList.remove("orangeBorder");
+              }}
               handler={(val) => {
                 dispatch({ type: "addQuestion", value: val });
               }}
             />
-            {/*<textarea
-              onFocus={addOrangeBorder}
-              onChange={(e) =>
-                dispatch({ type: "addQuestion", value: e.target.value })
-              }
-              rows="5"
-              id="question"
-              value={inputState.question}
-            ></textarea>*/}
           </div>
           <div className="options">
             <p>options</p>
@@ -272,6 +265,7 @@ const QuizEditor = (props) => {
                 <label>Answer</label>&nbsp;
                 <select
                   onFocus={addOrangeBorder}
+                  onBlur={removeOrangeBorder}
                   value={inputState.answer}
                   onChange={(e) => {
                     dispatch({ type: "ans", answer: e.target.value });
@@ -290,7 +284,7 @@ const QuizEditor = (props) => {
                 !inputState.loading
                   ? () =>
                       props.history.replace(
-                        `/dashboard/quizzes/list?quid=${quid}`
+                        `/dashboard/quizzes/list?sid=${school}&quid=${props.location.state.quiz}`
                       )
                   : null
               }

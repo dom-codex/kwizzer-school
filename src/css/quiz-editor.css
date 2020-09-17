@@ -15,6 +15,7 @@
   font-size: 2em;
   height: 70px;
   padding-left: 5px;
+  text-align: center;
 }
 .design-2 {
   background-color: rgba(204, 204, 204, 0.629);
@@ -34,11 +35,6 @@
   margin-bottom: 8px;
   font-size: 1.3rem;
   display: block;
-}
-.question textarea {
-  padding-left: 10px;
-  width: 97%;
-  border: none;
 }
 .options p {
   font-size: 1.3rem;

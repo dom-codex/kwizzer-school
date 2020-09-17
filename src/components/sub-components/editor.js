@@ -24,6 +24,8 @@ const TextEditor = (props) => {
              bullist numlist outdent indent | removeformat | help tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry",
       }}
       onEditorChange={handler}
+      onFocus={props.focus}
+      onBlur={props.blur}
       value={value}
     />
   );

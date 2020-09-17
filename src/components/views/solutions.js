@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import QuestionDisplayArea from "../sub-components/question-display";
 import OptionLabel from "../sub-components/option-label";
+import Loading from "../sub-components/Loading";
 import { checkForEquation } from "../../utils/transformQuestion";
 import "../../css/solution.css";
 const correct = {
@@ -37,6 +38,7 @@ const QuestionDisplay = (props) => {
 };
 const Solutions = (props) => {
   const { question } = props.location.state;
+  const [loading, setLoading] = useState(true);
   const questionReducer = (state, action) => {
     let index = 0;
     switch (action.type) {
@@ -91,10 +93,7 @@ const Solutions = (props) => {
     question: {},
   });
   const getQuestionPaper = () => {
-    /*let url = `http://localhost:3500/school/get/student/questionpaper?paper=${question}`;*/
-
     const url = `${process.env.REACT_APP_HEAD}/school/exam/result?sheet=${question}`;
-
     fetch(url)
       .then((res) => res.json())
       .then((datas) => {
@@ -103,8 +102,7 @@ const Solutions = (props) => {
           type: "load",
           quizzes: datas.solution.quizzes,
         });
-
-        //setQuestionpaper(data.questions.questions);
+        setLoading(false);
       });
   };
   const genQuizSelectors = (quizzes) => {
@@ -131,20 +129,26 @@ const Solutions = (props) => {
   useEffect(getQuestionPaper, []);
   return (
     <section className="solution">
-      <div className="question-paper">
-        {data.questions.length && (
-          <QuestionDisplay
-            index={data.currentQuestionIndex + 1}
-            question={data.question.question}
-            options={data.question.options}
-            answer={data.question.answer}
-            answered={data.question.isAnswered}
-            nav={switchQuestion}
-          >
-            {genQuizSelectors(data.quizzes)}
-          </QuestionDisplay>
-        )}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <div className="question-paper">
+            {data.questions.length && (
+              <QuestionDisplay
+                index={data.currentQuestionIndex + 1}
+                question={data.question.question}
+                options={data.question.options}
+                answer={data.question.answer}
+                answered={data.question.isAnswered}
+                nav={switchQuestion}
+              >
+                {genQuizSelectors(data.quizzes)}
+              </QuestionDisplay>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -40,27 +40,23 @@ tr th:nth-child(5) {
 .quizzes-list tbody tr td:nth-child(5) {
   text-align: left;
 }
-.showmore {
+.more {
   position: relative;
 }
 .show-more {
   position: absolute;
-  visibility: hidden;
+  display: none;
   flex-direction: column;
   background-color: #fff;
   border: thin solid #ccc;
   min-height: 128px;
   min-width: 90px;
   right: 0%;
-  top: 98%;
+  top: 60%;
   z-index: 1;
 }
-.showmore button:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-.showmore:hover .show-more {
-  visibility: visible;
-  display: flex;
+.showmore {
+  display: flex !important;
 }
 .student-quiz-controls {
   list-style: none;

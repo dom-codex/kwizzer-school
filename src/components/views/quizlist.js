@@ -19,7 +19,10 @@ const school = fetchData("school");
 const QuestionTile = (props) => {
   const { dispatch } = props;
   const goToEditor = (question, quiz) => {
-    props.history.push(`/dashboard/question/${quiz}/?new=false&qu=${question}`);
+    props.history.push(
+      `/dashboard/question/${quiz}/?new=false&qu=${question}`,
+      { quiz: quiz }
+    );
   };
   return (
     <div className="questions-tile">
@@ -28,10 +31,7 @@ const QuestionTile = (props) => {
           <div className="questions">
             <div className="quiz-nav">
               <button
-                onClick={
-                  () => dispatch({ type: "setRef", Qref: props.hash })
-                  //DeleteQuestion(props.hash, props.dispatch, props.questions)
-                }
+                onClick={() => dispatch({ type: "setRef", Qref: props.hash })}
                 className="question-delete-btn"
               >
                 <i className="material-icons">cancel</i>
