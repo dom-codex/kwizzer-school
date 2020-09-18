@@ -42,7 +42,7 @@ const Layout = (props) => {
               </a>
             </li>
             <li>
-              <a href={"/dashboard/quizzes"}>
+              <a href={"/dashboard/exam/records"}>
                 <i className="material-icons">assignment</i>{" "}
                 <div>Exam records</div>
               </a>

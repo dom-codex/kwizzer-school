@@ -3,11 +3,13 @@ const pattern = /(<[math]+[\s? class=""_a-z]{0,}>[<?a-z0-9"\S=/>\s_?]+<\/math>)/
 const pattern2 = /(xmlns="[a-zA-Z0-9/:.]+")/gi;
 const pattern3 = /<mo>&#160;<\/mo>/g;
 const pattern4 = /<math[ ]+>/g;
+const pattern5 = /bevelled="true"/g;
 export const checkForEquation = (question, size = 40) => {
   question = question.replace(pattern2, "");
   question = question.replace(pattern3, "");
   question = question.replace(/&nbsp;/, "");
   question = question.replace(pattern4, `<math>`);
+  question = question.replace(pattern5, "");
   const equations = question.match(pattern);
   const questions = question.split(" ");
   let fullQuestion = [];

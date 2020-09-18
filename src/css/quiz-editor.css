@@ -1,12 +1,18 @@
 .quiz-editor-cont {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.quiz-editor-body {
   position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: 7;
   overflow-y: scroll;
+  height: 100%;
+  width: 100vw;
+  z-index: 7;
   margin-bottom: 20px;
   background-color: #fff;
   top: 0;
+  min-width: 320px;
 }
 .quiz-editor-heading {
   background-color: #150143;
@@ -16,6 +22,14 @@
   height: 70px;
   padding-left: 5px;
   text-align: center;
+}
+@media all and (max-width: 320px) {
+  .quiz-editor-body {
+    position: relative;
+  }
+  .quiz-editor-heading {
+    display: none;
+  }
 }
 .design-2 {
   background-color: rgba(204, 204, 204, 0.629);
@@ -28,7 +42,7 @@
   border-left-color: orange;
 }
 .question {
-  padding: 8px 0 10px 5px;
+  padding: 12px;
 }
 .question label {
   margin-right: 12px;
@@ -67,15 +81,7 @@
 }
 .options li {
   width: 100%;
-}
-.options ul input {
-  width: 100%;
-  height: 42px;
-  margin-bottom: 10px;
-  padding-left: 5px;
-  position: relative;
-  border: none;
-  outline: none;
+  padding: 15px;
 }
 .opt {
   position: relative;
@@ -89,7 +95,7 @@
 .options ul button {
   position: absolute;
   right: 0px;
-  top: 22px;
+  top: -16px;
   z-index: 1;
   border: none;
   width: 55px;

@@ -46,6 +46,7 @@
     /* background-color: #050114;*/
     background-color: #050144;
     color: #fff;
+    min-width: 100vw;
   }
   .heading {
     text-align: center;

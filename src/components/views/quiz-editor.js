@@ -87,7 +87,6 @@ const QuizEditor = (props) => {
   const { search } = props.location;
   //const isNew = search.split("new=")[1];
   const isNew = search.split("new=")[1].split("&")[0];
-
   const quid =
     isNew === "true"
       ? search.split("quid=")[1].split("&")[0]
@@ -173,159 +172,161 @@ const QuizEditor = (props) => {
   }, []);
   return (
     <div className="quiz-editor-cont">
-      {inputState.loading ? (
-        <Loader
-          style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 1 }}
-        />
-      ) : (
-        ""
-      )}
-      {inputState.dialog ? (
-        <Dialog
-          title={"NOTE"}
-          text={`To have your equation rendered properly pls take note of the follow:
+      <div className="quiz-editor-body">
+        {inputState.loading ? (
+          <Loader
+            style={{ backgroundColor: "rgba(255,255,255,.7)", zIndex: 1 }}
+          />
+        ) : (
+          ""
+        )}
+        {inputState.dialog ? (
+          <Dialog
+            title={"NOTE"}
+            text={`To have your equation rendered properly pls take note of the follow:
         `}
-          action={() => dispatch({ type: "dialog" })}
-          list={
-            <ul className="note-ul">
-              <li>
-                Build your equations only with the aid of the equation builder,
-                descriptive texts should be added via the main editor
-              </li>
-              <li>
-                Do not add spaces when building your equation around operators
-                or around the equation symbols{" "}
-              </li>
-              <li>
-                Ensure you add spaces between the equation in the main editor
-                and the descriptive texts
-              </li>
-            </ul>
-          }
+            action={() => dispatch({ type: "dialog" })}
+            list={
+              <ul className="note-ul">
+                <li>
+                  Build your equations only with the aid of the equation
+                  builder, descriptive texts should be added via the main editor
+                </li>
+                <li>
+                  Do not add spaces when building your equation around operators
+                  or around the equation symbols{" "}
+                </li>
+                <li>
+                  Ensure you add spaces between the equation in the main editor
+                  and the descriptive texts
+                </li>
+              </ul>
+            }
+          />
+        ) : (
+          ""
+        )}
+        <Toast
+          isOpen={inputState.showToast}
+          action={() => dispatch({ type: "toast" })}
+          text={inputState.message}
+          styles={{}}
+          animate={"showToast-top"}
+          main={"toast-top"}
+          top={{ top: "25px" }}
         />
-      ) : (
-        ""
-      )}
-      <Toast
-        isOpen={inputState.showToast}
-        action={() => dispatch({ type: "toast" })}
-        text={inputState.message}
-        styles={{}}
-        animate={"showToast-top"}
-        main={"toast-top"}
-        top={{ top: "25px" }}
-      />
-      <div className="quiz-editor">
-        <div className="quiz-editor-heading">Question editor</div>
-        <div className="question-tile">
-          <div className="question design-2">
-            <label htmlFor="question">Question</label>
-            <TextEditor
-              value={inputState.question}
-              focus={(e) => {
-                document
-                  .querySelector(".question")
-                  .classList.add("orangeBorder");
-              }}
-              blur={() => {
-                document
-                  .querySelector(".question")
-                  .classList.remove("orangeBorder");
-              }}
-              handler={(val) => {
-                dispatch({ type: "addQuestion", value: val });
-              }}
-            />
-          </div>
-          <div className="options">
-            <p>options</p>
-            {isNew === "true" ? (
-              <div>
-                <ul className="options-list">
-                  {generateOptions(inputState, option, dispatch, setoptions)}
-                </ul>
-                <button onClick={addOptions} className="add-option">
-                  add option <i className="material-icons">control_point</i>
-                </button>
-              </div>
-            ) : (
-              <div>
-                <ul>
-                  {generateOptions(inputState, option, dispatch, setoptions)}
-                </ul>
+        <div className="quiz-editor">
+          <div className="quiz-editor-heading">Question editor</div>
+          <div className="question-tile">
+            <div className="question design-2">
+              <label htmlFor="question">Question</label>
+              <TextEditor
+                value={inputState.question}
+                focus={(e) => {
+                  document
+                    .querySelector(".question")
+                    .classList.add("orangeBorder");
+                }}
+                blur={() => {
+                  document
+                    .querySelector(".question")
+                    .classList.remove("orangeBorder");
+                }}
+                handler={(val) => {
+                  dispatch({ type: "addQuestion", value: val });
+                }}
+              />
+            </div>
+            <div className="options">
+              <p>options</p>
+              {isNew === "true" ? (
                 <div>
+                  <ul className="options-list">
+                    {generateOptions(inputState, option, dispatch, setoptions)}
+                  </ul>
                   <button onClick={addOptions} className="add-option">
-                    add option
+                    add option <i className="material-icons">control_point</i>
                   </button>
                 </div>
-              </div>
-            )}
-            <ul className="options-list">
-              <li className="ans design-2">
-                <label>Answer</label>&nbsp;
-                <select
-                  onFocus={addOrangeBorder}
-                  onBlur={removeOrangeBorder}
-                  value={inputState.answer}
-                  onChange={(e) => {
-                    dispatch({ type: "ans", answer: e.target.value });
-                  }}
-                >
-                  <option value={""}>none</option>
-                  {generateAnswer(option, inputState.opts, inputState.answer)}
-                </select>
-              </li>
-            </ul>
-          </div>
-          <hr />
-          <div className="editor-controls">
-            <button
-              onClick={
-                !inputState.loading
-                  ? () =>
-                      props.history.replace(
-                        `/dashboard/quizzes/list?sid=${school}&quid=${props.location.state.quiz}`
-                      )
-                  : null
-              }
-            >
-              cancel
-            </button>
-            {canCreate ? (
+              ) : (
+                <div>
+                  <ul>
+                    {generateOptions(inputState, option, dispatch, setoptions)}
+                  </ul>
+                  <div>
+                    <button onClick={addOptions} className="add-option">
+                      add option
+                    </button>
+                  </div>
+                </div>
+              )}
+              <ul className="options-list">
+                <li className="ans design-2">
+                  <label>Answer</label>&nbsp;
+                  <select
+                    onFocus={addOrangeBorder}
+                    onBlur={removeOrangeBorder}
+                    value={inputState.answer}
+                    onChange={(e) => {
+                      dispatch({ type: "ans", answer: e.target.value });
+                    }}
+                  >
+                    <option value={""}>none</option>
+                    {generateAnswer(option, inputState.opts, inputState.answer)}
+                  </select>
+                </li>
+              </ul>
+            </div>
+            <hr />
+            <div className="editor-controls">
               <button
                 onClick={
-                  isNew === "true"
-                    ? () => {
-                        removeOrangeBorder();
-                        save(
-                          inputState,
-                          quid,
-                          props.history,
-                          props.school,
-                          dispatch,
-                          setoptions
-                        );
-                      }
-                    : () => {
-                        removeOrangeBorder();
-                        saveEdited(
-                          inputState,
-                          quid,
-                          props.history,
-                          match.params.quiz,
-                          dispatch
-                        );
-                      }
+                  !inputState.loading
+                    ? () =>
+                        props.history.replace(
+                          `/dashboard/quizzes/list?sid=${school}&quid=${match.params.quiz}`
+                        )
+                    : null
                 }
               >
-                {isNew === "true" ? "Create" : "Save changes"}
+                cancel
               </button>
-            ) : (
-              <button style={{ backgroundColor: "grey" }}>
-                {" "}
-                {isNew === "true" ? "Create" : "Save changes"}
-              </button>
-            )}
+              {canCreate ? (
+                <button
+                  onClick={
+                    isNew === "true"
+                      ? () => {
+                          removeOrangeBorder();
+                          save(
+                            inputState,
+                            quid,
+                            props.history,
+                            props.school,
+                            dispatch,
+                            setoptions
+                          );
+                        }
+                      : () => {
+                          removeOrangeBorder();
+                          saveEdited(
+                            inputState,
+                            quid,
+                            props.history,
+                            match.params.quiz,
+                            dispatch
+                          );
+                        }
+                  }
+                >
+                  {isNew === "true" ? "Create" : "Save changes"}
+                </button>
+              ) : (
+                <button style={{ backgroundColor: "grey" }}>
+                  {" "}
+                  {isNew === "true" ? "Create" : "Save changes"}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

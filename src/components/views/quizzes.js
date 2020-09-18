@@ -7,8 +7,9 @@ import Loader from "../sub-components/indeterminate_indicator";
 import Loading from "../sub-components/Loading";
 import "../../css/quizzes.css";
 import { fetchData } from "../../utils/storage";
-const school = fetchData("school");
 const QuizList = (props) => {
+  const school = fetchData("school");
+
   const [loading, setLoading] = useState(true);
   const [quizzes, setQuizzes] = useState([]);
   const [isToast, setToast] = useState(false);

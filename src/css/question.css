@@ -61,6 +61,20 @@ section.question {
   background-color: #ccc;
   font-family: Fredoka One;
 }
+.q-span {
+  display: flex;
+  align-items: center;
+}
+.q-span img {
+  margin: 0 5px;
+  height: 48px !important;
+}
+.q-span {
+  margin: 0 3px;
+}
+.question-area {
+  overflow-x: scroll;
+}
 .question-area h4 {
   margin-top: 10px;
   padding-left: 10px;

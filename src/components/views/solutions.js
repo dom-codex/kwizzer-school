@@ -4,6 +4,7 @@ import OptionLabel from "../sub-components/option-label";
 import Loading from "../sub-components/Loading";
 import { checkForEquation } from "../../utils/transformQuestion";
 import "../../css/solution.css";
+import "../../css/question.css";
 const correct = {
   backgroundColor: "green",
 };
