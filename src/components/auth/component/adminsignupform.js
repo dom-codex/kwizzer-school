@@ -30,7 +30,7 @@ const AdminSignup = (props) => {
           onChange={(e) => dispatch({ type: "name", value: e.target.value })}
           value={inputState.name}
           maxLength="30"
-          placeholder="E.g Crystal academy"
+          placeholder="E.g Spark academy"
         />
         {inputState.notName ? (
           <small className="input-error-indicator">

@@ -21,18 +21,8 @@ const routing = (
       <Route exact path="/exam/register/:sch/:quiz" component={Registration} />
       <Route
         exact
-        path="/signup"
-        component={(props) => Signup({ ...props, admin: false })}
-      />
-      <Route
-        exact
         path="/school/create"
         component={(props) => Signup({ ...props, admin: true })}
-      />
-      <Route
-        exact
-        path="/login"
-        component={(props) => Login({ ...props, admin: false })}
       />
       <Route
         exact

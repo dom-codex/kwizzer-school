@@ -9,6 +9,10 @@ function Login(props) {
   };
   return (
     <section className="login">
+      <div className="alternative">
+        <span>Don't have an account yet?</span>
+        <a href="/school/create">Sign Up</a>
+      </div>
       <div className="login-body">
         {loader ? <Preloader /> : ""}
         <div className="login-header">
