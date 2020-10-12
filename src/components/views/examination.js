@@ -1,4 +1,6 @@
 import React, { useReducer, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
+
 import { modeContext } from "../../context/mode";
 import Timer from "../sub-components/timer";
 import Dialog from "../sub-components/dialog";
@@ -282,4 +284,4 @@ const Examination = (props) => {
   );
 };
 
-export default Examination;
+export default withRouter(Examination);

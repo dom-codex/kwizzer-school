@@ -1,5 +1,7 @@
 // eslint-disable-next-line
 import React, { useReducer, useEffect, useContext, useState } from "react";
+import { withRouter } from "react-router-dom";
+
 import NewExamForm from "../sub-components/examform";
 import { modeContext } from "../../context/mode";
 import Toast from "../sub-components/toast";
@@ -258,4 +260,4 @@ const NewExam = (props) => {
   );
 };
 
-export default NewExam;
+export default withRouter(NewExam);

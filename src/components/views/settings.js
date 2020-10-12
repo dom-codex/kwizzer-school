@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import Loading from "../sub-components/Loading";
+import { withRouter } from "react-router-dom";
 import Dialog from "../sub-components/dialog";
 import Loader from "../sub-components/indeterminate_indicator";
 import { modeContext } from "../../context/mode";
@@ -306,4 +307,4 @@ const Settings = (props) => {
   );
 };
 
-export default Settings;
+export default withRouter(Settings);

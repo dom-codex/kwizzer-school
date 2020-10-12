@@ -9,6 +9,7 @@
   padding-bottom: 25px;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 2;
   background-color: #fff;
   overflow-y: scroll;

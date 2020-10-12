@@ -3,11 +3,8 @@ import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import ModeProvider from "./context/mode";
-import Signup from "./components/auth/signUp";
-import Login from "./components/auth/login";
 import * as serviceWorker from "./serviceWorker";
-import QuestionEditor from "./components/views/quiz-editor";
-import Registration from "./components/views/registration";
+
 import Layout from "./components/sub-components/layout";
 import Examiner from "./screens/examiner";
 const routing = (
@@ -18,22 +15,6 @@ const routing = (
           <Route component={Examiner} />
         </div>
       </Layout>
-      <Route exact path="/exam/register/:sch/:quiz" component={Registration} />
-      <Route
-        exact
-        path="/school/create"
-        component={(props) => Signup({ ...props, admin: true })}
-      />
-      <Route
-        exact
-        path="/school/login"
-        component={(props) => Login({ ...props, admin: true })}
-      />
-      <Route
-        exact
-        path="/dashboard/question/:quiz"
-        component={QuestionEditor}
-      />
     </ModeProvider>
   </Router>
 );

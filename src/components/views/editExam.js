@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
+import { withRouter } from "react-router-dom";
 import NewExamForm from "../sub-components/examform";
 import Loader from "../sub-components/indeterminate_indicator";
 import Loading from "../sub-components/Loading";
@@ -262,4 +263,4 @@ const NewExam = (props) => {
   );
 };
 
-export default NewExam;
+export default withRouter(NewExam);

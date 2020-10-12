@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import { modeContext } from "../../context/mode";
 import "../../css/scoreboard.css";
 import Toast from "../sub-components/toast";
@@ -63,4 +64,4 @@ const ScoreBoard = (props) => {
     </section>
   );
 };
-export default ScoreBoard;
+export default withRouter(ScoreBoard);

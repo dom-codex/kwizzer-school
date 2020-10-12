@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useReducer } from "react";
+import { withRouter } from "react-router-dom";
+
 import Timer from "../sub-components/timer";
 import Dialog from "../sub-components/dialog";
 import QuestionDisplayArea from "../sub-components/question-display";
@@ -12,7 +14,6 @@ let message =
 let heading = "Congratulations";
 const Question = (props) => {
   const stateData = props.location.state;
-  console.log(stateData);
   const reducer = (state, action) => {
     switch (action.type) {
       case "init":
@@ -168,4 +169,4 @@ const Question = (props) => {
     </section>
   );
 };
-export default Question;
+export default withRouter(Question);

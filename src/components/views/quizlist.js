@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { withRouter } from "react-router-dom";
 import Toast from "../sub-components/toast";
 import Loader from "../sub-components/indeterminate_indicator";
 import Loading from "../sub-components/Loading";
@@ -252,4 +253,4 @@ const QuizList = (props) => {
     </section>
   );
 };
-export default QuizList;
+export default withRouter(QuizList);

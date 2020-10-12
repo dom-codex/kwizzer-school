@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import { modeContext } from "../../context/mode";
 import QuizTile from "../sub-components/quiz-tile";
 import Toast from "../sub-components/toast";
@@ -174,4 +175,4 @@ const QuizList = (props) => {
     </section>
   );
 };
-export default QuizList;
+export default withRouter(QuizList);

@@ -16,9 +16,9 @@ const Layout = (props) => {
         }}
       >
         <div className="side-panel">
-          <div className="side-panel-logo">
+          <a href={`${process.env.REACT_APP_HOME}`} className="side-panel-logo">
             <img src={Logo1} alt="logo" />
-          </div>
+          </a>
           <ul className="side-link">
             <li>
               <a href={"/dashboard"}>

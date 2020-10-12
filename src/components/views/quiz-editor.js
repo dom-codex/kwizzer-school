@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import TextEditor from "../sub-components/editor";
 import Toast from "../sub-components/toast";
 import Loader from "../sub-components/indeterminate_indicator";
@@ -333,4 +334,4 @@ const QuizEditor = (props) => {
     </div>
   );
 };
-export default QuizEditor;
+export default withRouter(QuizEditor);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import { modeContext } from "../../context/mode";
 import Tile from "../sub-components/tiles";
 import Toast from "../sub-components/toast";
@@ -245,4 +246,4 @@ const ExamRecords = (props) => {
   );
 };
 
-export default ExamRecords;
+export default withRouter(ExamRecords);

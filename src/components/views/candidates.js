@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import { modeContext } from "../../context/mode";
 import Toast from "../sub-components/toast";
 import ExamCandidatesWindow from "../sub-components/examCandidates";
@@ -83,4 +84,4 @@ const Published = (props) => {
     </section>
   );
 };
-export default Published;
+export default withRouter(Published);

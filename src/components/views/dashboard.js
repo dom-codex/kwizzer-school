@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+
 import StatsCard from "../sub-components/stats.js";
 import Jumbo from "../sub-components/Jumbo";
 import Menutile from "../sub-components/menu-tile";
@@ -107,4 +109,4 @@ const Dashboard = (props) => {
     </section>
   );
 };
-export default Dashboard;
+export default withRouter(Dashboard);

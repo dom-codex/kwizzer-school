@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import Loading from "../sub-components/Loading";
 import Loader from "../sub-components/indeterminate_indicator";
 import { modeContext } from "../../context/mode";
@@ -139,4 +140,4 @@ const CandidatesResults = (props) => {
     </section>
   );
 };
-export default CandidatesResults;
+export default withRouter(CandidatesResults);

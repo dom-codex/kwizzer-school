@@ -1,4 +1,5 @@
 import React, { useReducer, useContext, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { modeContext } from "../../context/mode";
 import Toast from "../sub-components/toast";
 import Dialog from "../sub-components/dialog";
@@ -192,4 +193,4 @@ const NewQuizWindow = (props) => {
   );
 };
 
-export default NewQuizWindow;
+export default withRouter(NewQuizWindow);

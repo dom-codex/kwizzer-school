@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import QuizOverlay from "../sub-components/QuizOverlay";
 import Loader from "../sub-components/indeterminate_indicator";
 import Loading from "../sub-components/Loading";
@@ -254,4 +255,4 @@ const Registration = (props) => {
     </section>
   );
 };
-export default Registration;
+export default withRouter(Registration);

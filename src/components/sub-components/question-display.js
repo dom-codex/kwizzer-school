@@ -11,7 +11,7 @@ const checkForEquation = (question) => {
   const equations = question.match(pattern);
   const questions = question.split(" ");
   let fullQuestion = [];
-  if (equations.length) {
+  if (equations && equations.length) {
     fullQuestion = questions.map((q) => {
       const equation = equations.find((eq) => eq === q);
       if (equation) {
