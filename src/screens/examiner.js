@@ -13,6 +13,7 @@ import ExamRecords from "../components/views/examRecords";
 import NewExam from "../components/views/newExam";
 import EditExam from "../components/views/editExam";
 import Settings from "../components/views/settings";
+import Whitelist from "../components/views/whitelist";
 import Page404 from "../components/views/404";
 import QuestionEditor from "../components/views/quiz-editor";
 import Registration from "../components/views/registration";
@@ -83,6 +84,11 @@ const Examiner = (props) => {
           exact
           path="/dashboard/question/:quiz"
           component={QuestionEditor}
+        />
+        <PrivateRoute
+          exact
+          path="/dashboard/whitelist/:exam"
+          component={Whitelist}
         />
         <Route component={Page404} />
       </Switch>

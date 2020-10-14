@@ -55,7 +55,7 @@ const Layout = (props) => {
             </li>
             <li>
               <a href={"/dashboard/settings"}>
-                <i className="material-icons">gear</i>
+                <i className="material-icons">settings</i>
                 <div>Settings</div>
               </a>
             </li>

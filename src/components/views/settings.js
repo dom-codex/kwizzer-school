@@ -121,7 +121,7 @@ const deleteAcount = (school, location) => {
       if (res.code === 201) {
         clearData("school");
         clearData("school-name");
-        location.replace("/signup");
+        location.replace("/school/create");
       }
     });
 };

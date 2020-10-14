@@ -190,6 +190,15 @@ const ExamRecords = (props) => {
                           <button onClick={() => setRegStatus(exam.ref)}>
                             {exam.canReg ? "deactivate" : "activate"}
                           </button>
+                          <button
+                            onClick={() =>
+                              props.history.push(
+                                `/dashboard/whitelist/${exam.ref}`
+                              )
+                            }
+                          >
+                            whitelist
+                          </button>
                           <div className="reg-link">
                             <button onClick={(e) => CopyLink(e)}>
                               copy link
